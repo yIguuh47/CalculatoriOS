@@ -12,6 +12,7 @@ class HistoricViewController: UIViewController {
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var accountView: UITableView!
     var accounts: [AccountModel] = []
+    var item = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ extension HistoricViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return accounts.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,4 +52,27 @@ extension HistoricViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? CustomCell else { return }
+        
+        item = indexPath.row + 1
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
+}
+
+extension HistoricViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToReturn" {
+            let calculator = segue.destination as! CalculatorViewController
+            calculator.itemHistorical = item
+            calculator.accounts = accounts
+            calculator.getHistorical(item: item)
+        }
+    }
+    
 }

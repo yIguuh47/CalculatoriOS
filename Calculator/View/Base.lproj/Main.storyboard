@@ -322,14 +322,14 @@
                             <constraint firstItem="JSg-iD-hiv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="rVO-Fz-ubd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1q0-IP-5Ke">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="UbD-8e-6cM">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="SsL-ic-Kup">
+                    <navigationItem key="navigationItem" id="QVl-sm-QyB">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="r47-UI-nOx">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="lQ9-qs-P8z">
                                 <rect key="frame" x="16" y="8" width="32" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="2Pm-cn-DHw"/>
-                                    <constraint firstAttribute="width" constant="32" id="91K-fc-W1p"/>
+                                    <constraint firstAttribute="height" constant="28" id="Y7d-Bj-249"/>
+                                    <constraint firstAttribute="width" constant="32" id="cta-gm-vMO"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -337,7 +337,7 @@
                                     <backgroundConfiguration key="background" image="clock.arrow.circlepath" catalog="system"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="historicAccountPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aak-Sq-EME"/>
+                                    <action selector="historicPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p3R-K4-9Ut"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -445,6 +445,7 @@
                     <connections>
                         <outlet property="accountView" destination="fAk-IV-C12" id="lLk-xV-kr9"/>
                         <outlet property="errorLbl" destination="Oix-au-KPI" id="6Rd-xU-9Yk"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="goToReturn" id="64e-cq-0vS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EId-24-aWe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -470,6 +471,9 @@
             <point key="canvasLocation" x="18.46153846153846" y="83.175355450236964"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="JAA-FZ-Ccx"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="110"/>
         <systemColor name="systemGreenColor">

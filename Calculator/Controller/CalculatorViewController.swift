@@ -15,11 +15,31 @@ class CalculatorViewController: UIViewController {
     
     var working: String = ""
     var accounts: [AccountModel] = []
+    var itemHistorical: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         bgButtons.layer.cornerRadius = 65
+        
+    }
+    
+    func getHistorical(item: Int) {
+        
+        if let item = itemHistorical {
+            var itemElement = item
+            if itemElement != 0 {
+                itemElement = itemElement - 1
+                DispatchQueue.main.async {
+                    self.calculatorWork.text = self.accounts[itemElement].accountBody
+                    self.calculatorResult.text = self.accounts[itemElement].accountResult
+                }
+            }
+        } else {
+            print("Error ao identificar historico!!")
+            clearAll()
+        }
         
     }
     
@@ -123,8 +143,14 @@ extension CalculatorViewController {
     }
     
     func addToWork(value: String) {
-        working =  working + value
-        calculatorWork.text = working
+        if calculatorWork.text != " " {
+            working = calculatorWork.text!
+            working = working + value
+            calculatorWork.text = working
+        } else {
+            working =  working + value
+            calculatorWork.text = working
+        }
     }
     
     func formatInput() -> Double {
@@ -201,7 +227,7 @@ extension CalculatorViewController {
 // MARK: - Navigation
 extension CalculatorViewController {
 
-    @IBAction func historicAccountPressed(_ sender: UIButton) {
+    @IBAction func historicPressed(_ sender: Any) {
         performSegue(withIdentifier: "goToHistoric", sender: self)
     }
     
