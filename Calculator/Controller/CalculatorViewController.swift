@@ -20,13 +20,10 @@ class CalculatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         bgButtons.layer.cornerRadius = 65
-        
     }
-    
-    func getHistorical(item: Int) {
         
+    func getHistorical(item: Int) {
         if let item = itemHistorical {
             var itemElement = item
             if itemElement != 0 {
@@ -40,7 +37,6 @@ class CalculatorViewController: UIViewController {
             print("Error ao identificar historico!!")
             clearAll()
         }
-        
     }
     
 }
@@ -86,9 +82,12 @@ extension CalculatorViewController {
     
     @IBAction func equalsPressed(_ sender: Any) {
         
-        if validInput() && working.count >= 3 {
-            let result = formatInput()
+        if validInput(){
+            let checkedWorkingsForPercent = working.replacingOccurrences(of: "%", with: "*0.01")
+            let expression = NSExpression(format: checkedWorkingsForPercent)
+            let result = expression.toFloatingPoint().expressionValue(with: nil, context: nil) as! Double
             let resultString = formatResult(result: result)
+            calculatorWork.text = resultString
             calculatorResult.text = resultString
             accounts.append(AccountModel(accountBody: self.working, accountResult: resultString))
         } else {
@@ -104,7 +103,6 @@ extension CalculatorViewController {
     @IBAction func backPressed(_ sender: Any) {
         clearOne(working: working)
     }
-    
     
     @IBAction func percentPressed(_ sender: Any) {
         addToWork(value: "%")
@@ -153,12 +151,6 @@ extension CalculatorViewController {
         }
     }
     
-    func formatInput() -> Double {
-        let checkWorkForPercent = working.replacingOccurrences(of: "%", with: "*0.01")
-        let expression =  NSExpression(format: working)
-        return expression.expressionValue(with: nil, context: nil) as! Double
-    }
-    
     func inputError(){
         let alert = UIAlertController(
             title: "Invalid Input", message: "Calculator unable to do math based on input", preferredStyle: .alert)
@@ -176,52 +168,53 @@ extension CalculatorViewController {
 
     }
     
-    func validInput() -> Bool {
+    func validInput() ->Bool {
         var count = 0
-        var funcCharIndex = [Int]()
+        var funcCharIndexes = [Int]()
         var previous: Int = -1
         
+        if working == "" {
+            return false
+        }
+        
         for char in working {
-            if specialCharacter(char: char) {
-                funcCharIndex.append(count)
+            if(specialCharacter(char: char)) {
+                funcCharIndexes.append(count)
             }
             count += 1
         }
-        
-        for index in funcCharIndex {
-            if index == 0 {
+
+        for index in funcCharIndexes {
+            if(index == 0) {
                 return false
             }
             
-            if index == working.count - 1 {
+            if(index == working.count - 1) {
                 return false
             }
             
-            if previous != -1 {
-                if index - previous == 1 {
+            if (previous != -1) {
+                if(index - previous == 1) {
                     return false
                 }
             }
             previous = index
         }
-        
         return true
     }
     
-    func specialCharacter(char: Character) -> Bool {
-        
-        switch char {
-            case "*": return true
-            case "%": return true
-            case "/": return true
-            case "+": return true
-            case "-": return true
-            case ".": return true
-        default:
-            return false
+    func specialCharacter (char: Character) -> Bool {
+        if(char == "*") {
+            return true
         }
+        if(char == "/") {
+            return true
+        }
+        if(char == "+") {
+            return true
+        }
+        return false
     }
-    
 }
 
 // MARK: - Navigation

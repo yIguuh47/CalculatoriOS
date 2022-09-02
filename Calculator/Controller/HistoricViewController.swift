@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol SetDataHistorical {
+    func setDataHistorical(accounts: [AccountModel], item: Int)
+}
+
 class HistoricViewController: UIViewController {
 
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var accountView: UITableView!
+    var delegateSetData: SetDataHistorical?
     var accounts: [AccountModel] = []
     var item = 0
     
@@ -21,6 +26,7 @@ class HistoricViewController: UIViewController {
         accountView.dataSource = self
     }
     
+
 }
 
 // MARK: - TableView
@@ -58,21 +64,27 @@ extension HistoricViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.cellForRow(at: indexPath) as? CustomCell else { return }
         
         item = indexPath.row + 1
-        navigationController?.popViewController(animated: true)
-        
+        performSegue(withIdentifier: "goToReturn", sender: self)
     }
     
 }
 
+
+// MARK: - Navigation
 extension HistoricViewController {
+
+    @IBAction func BackPressed(_ sender: Any) {
+        performSegue(withIdentifier: "goToReturn", sender: self)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToReturn" {
-            let calculator = segue.destination as! CalculatorViewController
-            calculator.itemHistorical = item
-            calculator.accounts = accounts
-            calculator.getHistorical(item: item)
+            let result = segue.destination as! CalculatorViewController
+            result.itemHistorical = item
+            result.accounts = accounts
+            result.getHistorical(item: item)
         }
     }
-    
+
 }

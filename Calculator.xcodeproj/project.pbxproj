@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA639BA528B5685900189F14 /* NSExpressionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA639BA428B5685900189F14 /* NSExpressionUtils.swift */; };
 		BA772AFA284113D400499EC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA772AF9284113D400499EC1 /* AppDelegate.swift */; };
 		BA772AFC284113D400499EC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA772AFB284113D400499EC1 /* SceneDelegate.swift */; };
 		BA772AFE284113D400499EC1 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA772AFD284113D400499EC1 /* CalculatorViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA639BA428B5685900189F14 /* NSExpressionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSExpressionUtils.swift; sourceTree = "<group>"; };
 		BA772AF6284113D400499EC1 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA772AF9284113D400499EC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA772AFB284113D400499EC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA639BA628B7B8DC00189F14 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BA639BA428B5685900189F14 /* NSExpressionUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		BA772AED284113D400499EC1 = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +77,7 @@
 				BA772B16284A4A1C00499EC1 /* Model */,
 				BA772B0E2847E11000499EC1 /* View */,
 				BA772B0D2847E10300499EC1 /* Controller */,
+				BA639BA628B7B8DC00189F14 /* Utils */,
 				BA772B02284113D800499EC1 /* Assets.xcassets */,
 				BA772B04284113D900499EC1 /* LaunchScreen.storyboard */,
 				BA772B07284113D900499EC1 /* Info.plist */,
@@ -186,6 +197,7 @@
 				BA772B13284A3DA900499EC1 /* CustomCell.swift in Sources */,
 				BA772AFC284113D400499EC1 /* SceneDelegate.swift in Sources */,
 				BA772B102847E1D400499EC1 /* HistoricViewController.swift in Sources */,
+				BA639BA528B5685900189F14 /* NSExpressionUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
